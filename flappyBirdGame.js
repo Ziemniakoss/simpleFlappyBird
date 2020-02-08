@@ -105,6 +105,6 @@ function render() {
 
 function createNewWall() {
 	lastSpawn = new Date().valueOf();
-	walls.push(new Wall(15, 20));//todo randomowo
+	walls.push(new Wall(15, 15));//todo randomowo
 	console.log("Wall spawned")
 }
