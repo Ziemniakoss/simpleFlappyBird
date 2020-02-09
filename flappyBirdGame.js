@@ -3,9 +3,9 @@ let ctx;
 let worldHeight = 30;//w metrach
 let worldLength = 90;//w metrach
 let lastUpdate;
-let wallsSpeed = 0.005;
+let wallsSpeed = 0.007;
 let bird;
-let spawnFrequency = 1000; //co sekunde
+let spawnFrequency = 3500;
 let lastSpawn;
 /**
  * Szybkość z jaką ściany sie przesuwają w lewo w m/s
@@ -35,7 +35,7 @@ document.addEventListener("collision", function () {
 	gameState = gameStates.WAITING_FOR_START;
 	walls = [];
 });
-document.addEventListener("scored",function () {
+document.addEventListener("scored", function () {
 	console.log("Scored!");
 });
 
@@ -80,7 +80,7 @@ function update(delta) {
 
 	});
 	bird.update(seconds);
-	if(new Date().valueOf() - lastSpawn > spawnFrequency){
+	if (new Date().valueOf() - lastSpawn > spawnFrequency) {
 		createNewWall();
 	}
 
@@ -105,6 +105,8 @@ function render() {
 
 function createNewWall() {
 	lastSpawn = new Date().valueOf();
-	walls.push(new Wall(15, 15));//todo randomowo
+	let height = 8 + Math.random() * 4;
+	let y = 2 + Math.random() * (worldHeight -2);
+	walls.push(new Wall(y, height));//todo randomowo
 	console.log("Wall spawned")
 }
